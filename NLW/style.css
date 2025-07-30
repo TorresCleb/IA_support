@@ -5,7 +5,8 @@
     font-family: "Inter", sans-serif;
 }
 body{
-    background-image: url("./assets/bg.jpg");
+    background-image: rgba(89, 82, 100, 0.4), url('./assets/bg.png');
+
     background-repeat: no-repeat;
     background-size: 100% auto;
     background-position: top center;
@@ -17,7 +18,8 @@ header{
     text-align: center;
 }
 header img{
-    width: 15rem;
+    width: 10rem;
+
 }
 main{
     max-width: 36rem;
@@ -26,7 +28,7 @@ main{
 }
 section{
     border-radius: 0.625rem;
-    background-image: linear-gradient(90deg, #9572FC 0%, #43E7AD 50%, #E2D45C 100%);
+    background: linear-gradient(179deg,rgba(171, 27, 37, 1) 0%, rgba(199, 87, 87, 1) 50%, rgba(51, 49, 34, 1) 100%);
     padding-top: 4px;
 }
 section > div{
@@ -67,7 +69,7 @@ form{
 }
 input,select{
     all: unset; /*; /* Reset all styles */
-    border: 2px solid #9147ff; /* Border color */
+    border: 2px solid rgb(255, 71, 71); /* Border color */
     border-radius: 0.5rem; 
     padding: 0.675rem;
     font-size: 0.875rem;
@@ -83,7 +85,8 @@ input{
 button{
     width: 100%;
     border: 0;
-    background-image: linear-gradient(35deg, #9572FC 0%, #43E7AD 50%, #E2D45C 100%);
+    background: radial-gradient(circle,rgba(171, 27, 37, 1) 0%, rgba(199, 87, 87, 1) 50%, rgb(249, 50, 10) 100%);
+
     padding: 0.675rem;
     border-radius: 0.5rem;
     font-weight: bold;
@@ -91,6 +94,7 @@ button{
     letter-spacing: 0.12px;
 
     transition: all 0.3s; /* Smooth transition for hover effects */
+    color: white;
 }
 button:hover{
     cursor: pointer;
@@ -104,14 +108,20 @@ button:disabled{
     color: black;
 }
 #aiResponse{
-    letter-spacing: -0.47px;
-    
-    color: aliceblue;
-    padding: 5px;
+    background: rgb(0, 0, 0, 0.4);    
+    border-radius: 0.5rem;
+    padding: 1rem;
+    text-align: justify;
+    margin-top: 1.25rem;
+    letter-spacing: -0.18px;
+    line-height:  1.9em;
+    color: white
+
 
 }
 .loading{
     animation: pulse 2s infinite;
+    color: white;
 }
 @keyframes pulse{
     50%{
