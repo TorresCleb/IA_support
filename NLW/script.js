@@ -30,7 +30,7 @@ const perguntarAi = async (question, game, apiKey) =>{ // Function to ask the AI
 
     ## Reposta  
         Forneça uma resposta clara e concisa, com informações relevantes sobre redes e telecomunicações.
-       - Uma respota com no máximo 500 caracteres.
+       - Uma resposta com no máximo 400 caracteres.
        - Não quero respostas que podem ser faladas em português, mas que estão em inglês.
        - Quando o assunto for clientes atritados, forneça informações sobre como identificar e lidar com clientes que estão insatisfeitos ou que podem deixar de usar o serviço.
 
