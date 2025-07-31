@@ -1,0 +1,132 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+}
+body{
+    background-image: rgba(146, 142, 152, 0.4), url('./assets/bg.png');
+
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: top center;
+    background-color: #282836;
+    color: rgb(255, 255, 255);
+}
+header{
+    padding-top: 32px;
+    text-align: center;
+}
+header img{
+    width: 10rem;
+
+}
+main{
+    max-width: 36rem;
+    width: 90%;
+    margin: 3rem auto;
+}
+section{
+    border-radius: 0.625rem;
+    background: linear-gradient(179deg,rgba(171, 27, 37, 1) 0%, rgba(199, 87, 87, 1) 50%, rgba(51, 49, 34, 1) 100%);
+    padding-top: 4px;
+}
+section > div{
+    border-radius: 0.5rem;
+    padding: 2rem;
+    padding-top: 1.5rem;
+    background-color: #2f2c38;
+}
+section h2{
+   letter-spacing: -0.47px;
+}
+section p{
+    font-style: italic;
+    letter-spacing: -0.18px;
+
+}
+
+/* Animation for section */
+main section{
+    opacity: 0;
+    transform: translateY(2rem);
+    animation-name: appear; /* Name of the animation */
+    animation-duration: 700ms; /* Duration of the animation */
+    animation-fill-mode: forwards; /* Keeps the final state of the animation */
+    
+}
+
+@keyframes appear{ /* Keyframes for the appear animation */
+    100%{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+form{
+    display: flex;
+    gap: 0.85rem;/* Space between input and button */
+    flex-wrap: wrap; /* Allows the input and button to wrap on smaller screens */
+    margin: 1.25rem 0;
+}
+input,select{
+    all: unset; /*; /* Reset all styles */
+    border: 2px solid rgb(255, 71, 71); /* Border color */
+    border-radius: 0.5rem; 
+    padding: 0.675rem;
+    font-size: 0.875rem;
+    background-color:#00000066;
+}
+select > option{
+    background-color: #030303; /* Background color for options */
+ /* Text color for options */
+}
+input{
+    flex: 1;
+}
+button{
+    width: 100%;
+    border: 0;
+    background: radial-gradient(circle,rgba(171, 27, 37, 1) 0%, rgba(199, 87, 87, 1) 50%, rgb(249, 50, 10) 100%);
+
+    padding: 0.675rem;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.12px;
+
+    transition: all 0.3s; /* Smooth transition for hover effects */
+    color: white;
+}
+button:hover{
+    cursor: pointer;
+    filter: brightness(0.9);
+    box-shadow: 0 5px 1rem rgba(255, 34, 34, 0.2); /* Shadow effect on hover */
+}
+button:disabled{
+    transform: initial;
+    cursor: not-allowed; /* Change cursor to indicate it's not clickable */
+    box-shadow: initial;
+    color: black;
+}
+#aiResponse{
+    background: rgb(0, 0, 0, 0.4);    
+    border-radius: 0.5rem;
+    padding: 1rem;
+    text-align: justify;
+    margin-top: 1.25rem;
+    letter-spacing: -0.18px;
+    line-height:  1.9em;
+    color: rgb(243, 254, 221)
+
+
+}
+.loading{
+    animation: pulse 2s infinite;
+    color: white;
+}
+@keyframes pulse{
+    50%{
+        opacity: 0.5;
+    }
+}

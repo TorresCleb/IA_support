@@ -1,0 +1,19 @@
+# Arquivos de configuração com informações sensíveis
+env.js
+
+# Arquivos de ambiente
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Logs
+*.log
+
+# Dependências
+node_modules/
+
+# Arquivos temporários
+*.tmp
+*.temp 
