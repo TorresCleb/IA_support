@@ -13,11 +13,14 @@ Este é um assistente de suporte que utiliza a API do Google Gemini para respond
    ```
 
 2. Edite o arquivo `env.js` e adicione sua API key do Google Gemini:
+
    ```javascript
    const config = {
      GEMINI_API_KEY: "SUA_API_KEY_REAL_AQUI",
    };
    ```
+
+   ⚠️ **IMPORTANTE**: Nunca commite o arquivo `env.js` com sua API Key real no repositório!
 
 ### 2. Obter uma API Key do Google Gemini
 
