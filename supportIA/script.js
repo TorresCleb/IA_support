@@ -1,3 +1,6 @@
+// Remover a linha require e usar variáveis de ambiente
+// const config = require("./env")
+
 const techSelect = document.getElementById('techSelect')
 const questionInput = document.getElementById('questionInput')
 const askButton = document.getElementById('askButton')
@@ -8,6 +11,20 @@ const form = document.getElementById('form')
 const markdownToHTML = (text) =>{
     const converter = new showdown.Converter()
     return converter.makeHtml(text)
+}
+
+// Função para obter a API key das variáveis de ambiente
+const getApiKey = () => {
+    // Para desenvolvimento local, usar a variável global do env.js
+    if (typeof window !== 'undefined' && window.config && window.config.GEMINI_API_KEY) {
+        return window.config.GEMINI_API_KEY;
+    }
+    // Para produção na Vercel, a API key será injetada via variável de ambiente
+    if (typeof process !== 'undefined' && process.env && process.env.GEMINI_API_KEY) {
+        return process.env.GEMINI_API_KEY;
+    }
+    // Fallback para desenvolvimento local
+    return '';
 }
 
 //AIzaSyD57flc2_tSuB22ohrK0RwCn9WaXfdXibo - Google API Key 
@@ -79,7 +96,7 @@ const perguntarAi = async (question, tech, apiKey) =>{ // Function to ask the AI
 }
 const enviarFormulario = async (event) =>{ // Function to handle form submission
     event.preventDefault()// Prevent the default form submission behavior
-    const apiKey = config.GEMINI_API_KEY
+    const apiKey = getApiKey()
     const tech = techSelect.value
     const question = questionInput.value
     
@@ -87,6 +104,12 @@ const enviarFormulario = async (event) =>{ // Function to handle form submission
         alert('por favor, preencha todos os campos.')
         return
     }
+    
+    if (!apiKey) {
+        alert('Erro: API Key não configurada. Verifique as configurações.')
+        return
+    }
+    
     askButton.disabled = true // Disable the button to prevent multiple submissions
     askButton.textContent = 'Perguntando...' // Change button text to indica'te submission
     askButton.classList.add('loading')
@@ -99,9 +122,10 @@ const enviarFormulario = async (event) =>{ // Function to handle form submission
 
     } catch (error) {
         console.log('Erro:' ,error)
+        alert('Erro ao processar sua pergunta. Tente novamente.')
     } finally{
         askButton.disabled = false // Re-enable the button after processing
-        askButton.textContent = 'Perguntar' // Reset button text
+        askButton.textContent = 'Tire sua dúvida' // Reset button text
         askButton.classList.remove('loading') // Remove loading class
     }
 }

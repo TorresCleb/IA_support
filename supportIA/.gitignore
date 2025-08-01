@@ -8,6 +8,9 @@ env.js
 .env.test
 .env.production
 
+# Arquivos de configuração da Vercel (opcional)
+.vercel
+
 # Logs
 *.log
 
