@@ -94,7 +94,7 @@ const perguntarAi = async (question, tech, apiKey) =>{ // Function to ask the AI
 }
 const enviarFormulario = async (event) =>{ // Function to handle form submission
     event.preventDefault()// Prevent the default form submission behavior
-    const apiKey = getApiKey()
+    const apiKey = config.GEMINI_API_KEY || getApiKey() // Get the API key from the config or environment variable
     const tech = techSelect.value
     const question = questionInput.value
     
