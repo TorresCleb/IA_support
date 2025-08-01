@@ -1,4 +1,4 @@
-const gameSelect = document.getElementById('gameSelect')
+const techSelect = document.getElementById('techSelect')
 const questionInput = document.getElementById('questionInput')
 const askButton = document.getElementById('askButton')
 const aiResponse = document.getElementById('aiResponse')
@@ -80,10 +80,10 @@ const perguntarAi = async (question, tech, apiKey) =>{ // Function to ask the AI
 const enviarFormulario = async (event) =>{ // Function to handle form submission
     event.preventDefault()// Prevent the default form submission behavior
     const apiKey = config.GEMINI_API_KEY
-    const game = gameSelect.value
+    const tech = techSelect.value
     const question = questionInput.value
     
-    if(game == '' || question == ''){
+    if(tech == '' || question == ''){
         alert('por favor, preencha todos os campos.')
         return
     }
@@ -93,7 +93,7 @@ const enviarFormulario = async (event) =>{ // Function to handle form submission
 
     // Here you would typically make an API call to send the question and get a response
     try{
-        const text = await perguntarAi(question,game,apiKey)
+        const text = await perguntarAi(question,tech,apiKey)
         aiResponse.querySelector('.response-content').innerHTML = markdownToHTML(text) // Display the AI's response
 
 
