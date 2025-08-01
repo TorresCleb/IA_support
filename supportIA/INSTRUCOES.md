@@ -10,6 +10,16 @@ O projeto agora funciona localmente usando o arquivo `env.js` que contém sua AP
 2. Abra o `index.html` no navegador ou use um servidor local
 3. O botão deve funcionar normalmente com os efeitos de loading
 
+### 🔍 Debug:
+
+Se estiver tendo problemas, abra o `test.html` no navegador para verificar se a configuração está carregando corretamente.
+
+Para verificar no console do navegador:
+
+- Abra as ferramentas do desenvolvedor (F12)
+- Vá na aba "Console"
+- Você deve ver: "window.config: {GEMINI_API_KEY: '...'}"
+
 ## 🚀 Deploy na Vercel
 
 Para fazer deploy na Vercel sem expor sua API key:

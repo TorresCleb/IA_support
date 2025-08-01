@@ -7,6 +7,9 @@ const askButton = document.getElementById('askButton')
 const aiResponse = document.getElementById('aiResponse')
 const form = document.getElementById('form')
 
+// Debug: verificar se window.config está disponível
+console.log('window.config:', window.config)
+
 // Function to convert Markdown text to HTML
 const markdownToHTML = (text) =>{
     const converter = new showdown.Converter()
@@ -17,13 +20,16 @@ const markdownToHTML = (text) =>{
 const getApiKey = () => {
     // Para desenvolvimento local, usar a variável global do env.js
     if (typeof window !== 'undefined' && window.config && window.config.GEMINI_API_KEY) {
+        console.log('Usando API key do env.js');
         return window.config.GEMINI_API_KEY;
     }
     // Para produção na Vercel, a API key será injetada via variável de ambiente
     if (typeof process !== 'undefined' && process.env && process.env.GEMINI_API_KEY) {
+        console.log('Usando API key das variáveis de ambiente');
         return process.env.GEMINI_API_KEY;
     }
     // Fallback para desenvolvimento local
+    console.log('API key não encontrada');
     return '';
 }
 
@@ -94,7 +100,7 @@ const perguntarAi = async (question, tech, apiKey) =>{ // Function to ask the AI
 }
 const enviarFormulario = async (event) =>{ // Function to handle form submission
     event.preventDefault()// Prevent the default form submission behavior
-    const apiKey = config.GEMINI_API_KEY || getApiKey() // Get the API key from the config or environment variable
+    const apiKey = getApiKey() // Get the API key from the config or environment variable
     const tech = techSelect.value
     const question = questionInput.value
     
