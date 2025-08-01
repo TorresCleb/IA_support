@@ -27,8 +27,6 @@ const getApiKey = () => {
     return '';
 }
 
-//AIzaSyD57flc2_tSuB22ohrK0RwCn9WaXfdXibo - Google API Key 
-
 const perguntarAi = async (question, tech, apiKey) =>{ // Function to ask the AI a question
     const model = 'gemini-2.0-flash'
     const baseURL = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`
