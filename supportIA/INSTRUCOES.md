@@ -18,7 +18,7 @@ Para verificar no console do navegador:
 
 - Abra as ferramentas do desenvolvedor (F12)
 - Vá na aba "Console"
-- Você deve ver: "window.config: {GEMINI_API_KEY: '...'}"
+- Você deve ver: "config importado: {GEMINI_API_KEY: '...'}"
 
 ## 🚀 Deploy na Vercel
 
@@ -46,8 +46,8 @@ Para fazer deploy na Vercel sem expor sua API key:
 
 ### Localmente:
 
-- O `env.js` expõe `window.config` com sua API key
-- O `script.js` acessa `window.config.GEMINI_API_KEY`
+- O `env.js` exporta a configuração usando ES6 modules
+- O `script.js` importa `config` e acessa `config.GEMINI_API_KEY`
 
 ### Na Vercel:
 

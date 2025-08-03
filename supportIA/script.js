@@ -1,14 +1,12 @@
 // Remover a linha require e usar variáveis de ambiente
-// const config = require("./env")
+
+import config from './env.js'
 
 const techSelect = document.getElementById('techSelect')
 const questionInput = document.getElementById('questionInput')
 const askButton = document.getElementById('askButton')
 const aiResponse = document.getElementById('aiResponse')
 const form = document.getElementById('form')
-
-// Debug: verificar se window.config está disponível
-console.log('window.config:', window.config)
 
 // Function to convert Markdown text to HTML
 const markdownToHTML = (text) =>{
@@ -18,10 +16,10 @@ const markdownToHTML = (text) =>{
 
 // Função para obter a API key das variáveis de ambiente
 const getApiKey = () => {
-    // Para desenvolvimento local, usar a variável global do env.js
-    if (typeof window !== 'undefined' && window.config && window.config.GEMINI_API_KEY) {
-        console.log('Usando API key do env.js');
-        return window.config.GEMINI_API_KEY;
+    // Para desenvolvimento local, usar a configuração importada
+    if (config && config.GEMINI_API_KEY) {
+        console.log('Usando API key do env.js importado');
+        return config.GEMINI_API_KEY;
     }
     // Para produção na Vercel, a API key será injetada via variável de ambiente
     if (typeof process !== 'undefined' && process.env && process.env.GEMINI_API_KEY) {

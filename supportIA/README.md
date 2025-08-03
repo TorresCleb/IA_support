@@ -4,7 +4,7 @@ Este é um assistente de suporte que utiliza a API do Google Gemini para respond
 
 ## Configuração
 
-### 1. Configurar a API Key
+### Desenvolvimento Local
 
 1. Copie o arquivo `env.example.js` para `env.js`:
 
@@ -22,12 +22,9 @@ Este é um assistente de suporte que utiliza a API do Google Gemini para respond
 
    ⚠️ **IMPORTANTE**: Nunca commite o arquivo `env.js` com sua API Key real no repositório!
 
-### 2. Obter uma API Key do Google Gemini
+### Deploy no Vercel (Recomendado)
 
-1. Acesse o [Google AI Studio](https://makersuite.google.com/app/apikey)
-2. Faça login com sua conta Google
-3. Clique em "Create API Key"
-4. Copie a chave gerada e cole no arquivo `env.js`
+Para fazer deploy no Vercel com variáveis de ambiente seguras, consulte o arquivo [DEPLOY_VERCEL.md](./DEPLOY_VERCEL.md) para instruções detalhadas.
 
 ## Como usar
 
@@ -41,10 +38,32 @@ Este é um assistente de suporte que utiliza a API do Google Gemini para respond
 - **Problemas técnicos**: Assistência com questões técnicas de redes e telecomunicações
 - **Atendimento ao cliente**: Orientações sobre atendimento ao cliente
 - **Clientes atritados**: Estratégias para lidar com clientes insatisfeitos
+- **Deploy seguro**: Configuração pronta para Vercel com variáveis de ambiente
+
+## Estrutura do Projeto
+
+```
+supportIA/
+├── api/
+│   └── gemini.js          # API route para o Gemini (Vercel)
+├── assets/
+│   ├── bg.jpg
+│   └── logo.png
+├── index.html             # Página principal
+├── script.js              # JavaScript do frontend
+├── style.css              # Estilos
+├── vercel.json            # Configuração do Vercel
+├── DEPLOY_VERCEL.md       # Instruções de deploy
+└── .gitignore             # Arquivos ignorados pelo Git
+```
 
 ## Segurança
 
-⚠️ **Importante**: O arquivo `env.js` contém informações sensíveis e não deve ser commitado no repositório. Ele já está incluído no `.gitignore`.
+⚠️ **Importante**:
+
+- O arquivo `env.js` contém informações sensíveis e não deve ser commitado no repositório. Ele já está incluído no `.gitignore`.
+- Para produção, a API key é configurada através de variáveis de ambiente no Vercel
+- Todas as chamadas para a API do Gemini são feitas através de uma API route segura
 
 ## Tecnologias utilizadas
 
@@ -53,3 +72,4 @@ Este é um assistente de suporte que utiliza a API do Google Gemini para respond
 - JavaScript (ES6+)
 - Google Gemini API
 - Showdown.js (para conversão de Markdown)
+- Vercel (para deploy e API routes)
