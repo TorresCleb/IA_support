@@ -17,9 +17,9 @@ const markdownToHTML = (text) =>{
 // Função para obter a API key das variáveis de ambiente
 const getApiKey = () => {
     // Para desenvolvimento local, usar a configuração importada
-    if (config && config.GEMINI_API_KEY) {
+    if (config && process.env.GEMINI_API_KEY) {
         console.log('Usando API key do env.js importado');
-        return config.GEMINI_API_KEY;
+        return process.env.GEMINI_API_KEY;
     }
     // Para produção na Vercel, a API key será injetada via variável de ambiente
     if (typeof process !== 'undefined' && process.env && process.env.GEMINI_API_KEY) {
