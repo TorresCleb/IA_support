@@ -16,20 +16,14 @@ const markdownToHTML = (text) => {
 
 // Função para obter a API key das variáveis de ambiente
 const getApiKey = () => {
-  // Para desenvolvimento local, usar a configuração importada
-  if (config && process.env.GEMINI_API_KEY) {
-    console.log("Usando API key do env.js importado");
-    return process.env.GEMINI_API_KEY;
+  // Verificar se a configuração está disponível
+  if (config && config.env && config.env.GEMINI_API_KEY) {
+    console.log("Usando API key da configuração");
+    return config.env.GEMINI_API_KEY;
   }
-  // Para produção na Vercel, a API key será injetada via variável de ambiente
-  if (
-    typeof process !== "undefined" &&
-    process.env &&
-    process.env.GEMINI_API_KEY
-  ) {
-    console.log("Usando API key das variáveis de ambiente");
-    return process.env.GEMINI_API_KEY;
-  }
+  
+  console.error("API Key não encontrada na configuração");
+  return null;
 };
 
 const perguntarAi = async (question, tech, apiKey) => {
