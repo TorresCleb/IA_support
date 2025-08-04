@@ -1,6 +1,6 @@
 # 🤖 Assistente de IA para Redes e Telecomunicações
 
-Este é um **Assistente de Inteligência Artificial** desenvolvido para auxiliar **atendentes de telemarketing** na resolução de dúvidas diárias sobre **redes e telecomunicações**.  
+Este é um **Assistente de Inteligência Artificial** desenvolvido para auxiliar **atendentes de telemarketing** na resolução de dúvidas diárias sobre **redes e telecomunicações**.
 
 O sistema foi criado com foco em **agilidade, eficiência e praticidade**, integrando **IA generativa** para tornar o atendimento mais inteligente e produtivo.
 
@@ -20,9 +20,11 @@ Este repositório apresenta uma aplicação web que permite aos usuários obter 
 O diferencial deste projeto reside na implementação de agentes de IA especializados. Em vez de um modelo genérico, cada consulta aciona um "agente" especializado. Como isso funciona?
 
 ### Instrução Dinâmica
+
 Antes de enviar a pergunta do usuário para a API do Gemini, um `systemInstructionText` é construído dinamicamente. Este texto define o papel do nosso agente, instruindo-o a se comportar como um especialista na área selecionada.
 
 ### Ferramentas (Google Search)
+
 A inclusão de `Google Search: {}` nas tools (ferramentas) do fetch indica que o modelo Gemini tem a capacidade de utilizar a pesquisa do Google se precisar de informações adicionais para responder à pergunta. Isso amplia o conhecimento do nosso agente de IA, tornando-o ainda mais poderoso!
 
 ## Configuração
@@ -41,8 +43,8 @@ A inclusão de `Google Search: {}` nas tools (ferramentas) do fetch indica que o
    const config = {
      env: {
        GEMINI_API_KEY: "SUA_API_KEY_REAL_AQUI",
-       NODE_ENV: "development"
-     }
+       NODE_ENV: "development",
+     },
    };
    ```
 
