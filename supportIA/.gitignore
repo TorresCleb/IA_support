@@ -1,0 +1,22 @@
+# Arquivos de configuração com informações sensíveis
+env.js
+
+# Arquivos de ambiente
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Arquivos de configuração da Vercel (opcional)
+.vercel
+
+# Logs
+*.log
+
+# Dependências
+node_modules/
+
+# Arquivos temporários
+*.tmp
+*.temp 
