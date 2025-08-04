@@ -1,38 +1,42 @@
 // Remover a linha require e usar variáveis de ambiente
 
-import config from './env.js'
+import config from "./env.js";
 
-const techSelect = document.getElementById('techSelect')
-const questionInput = document.getElementById('questionInput')
-const askButton = document.getElementById('askButton')
-const aiResponse = document.getElementById('aiResponse')
-const form = document.getElementById('form')
+const techSelect = document.getElementById("techSelect");
+const questionInput = document.getElementById("questionInput");
+const askButton = document.getElementById("askButton");
+const aiResponse = document.getElementById("aiResponse");
+const form = document.getElementById("form");
 
 // Function to convert Markdown text to HTML
-const markdownToHTML = (text) =>{
-    const converter = new showdown.Converter()
-    return converter.makeHtml(text)
-}
+const markdownToHTML = (text) => {
+  const converter = new showdown.Converter();
+  return converter.makeHtml(text);
+};
 
 // Função para obter a API key das variáveis de ambiente
 const getApiKey = () => {
-    // Para desenvolvimento local, usar a configuração importada
-    if (config && process.env.GEMINI_API_KEY) {
-        console.log('Usando API key do env.js importado');
-        return process.env.GEMINI_API_KEY;
-    }
-    // Para produção na Vercel, a API key será injetada via variável de ambiente
-    if (typeof process !== 'undefined' && process.env && process.env.GEMINI_API_KEY) {
-        console.log('Usando API key das variáveis de ambiente');
-        return process.env.GEMINI_API_KEY;
-    }
+  // Para desenvolvimento local, usar a configuração importada
+  if (config && process.env.GEMINI_API_KEY) {
+    console.log("Usando API key do env.js importado");
+    return process.env.GEMINI_API_KEY;
+  }
+  // Para produção na Vercel, a API key será injetada via variável de ambiente
+  if (
+    typeof process !== "undefined" &&
+    process.env &&
+    process.env.GEMINI_API_KEY
+  ) {
+    console.log("Usando API key das variáveis de ambiente");
+    return process.env.GEMINI_API_KEY;
+  }
+};
 
-}
-
-const perguntarAi = async (question, tech, apiKey) =>{ // Function to ask the AI a question
-    const model = 'gemini-2.0-flash'
-    const baseURL = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`
-    const systemInstructionText  = `
+const perguntarAi = async (question, tech, apiKey) => {
+  // Function to ask the AI a question
+  const model = "gemini-2.0-flash";
+  const baseURL = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+  const systemInstructionText = `
 
      ## Especialidade
         Você é um especialista em ${tech} e pode responder perguntas técnicas sobre redes e telecomunicações.
@@ -68,66 +72,72 @@ const perguntarAi = async (question, tech, apiKey) =>{ // Function to ask the AI
      ## Instruções
         Responda de forma clara e concisa, fornecendo informações relevantes sobre redes e telecomunicações.
         Se não souber a resposta, diga que não sabe.
-    `
-    const contents = [{
-        role:"user",
-        parts:[{
-            text: systemInstructionText 
-        }]
-    }]
-     const tools = [{
-        google_search: {}
-     }]
-
-    // Calling API
-    const response = await fetch(baseURL,{
-        method: 'POST',
-        headers:{
-            'Content-Type': 'application/json'
+    `;
+  const contents = [
+    {
+      role: "user",
+      parts: [
+        {
+          text: systemInstructionText,
         },
-        body:JSON.stringify({
-            contents,
-            tools
-        })
-    })
+      ],
+    },
+  ];
+  const tools = [
+    {
+      google_search: {},
+    },
+  ];
 
-    const data = await response.json() // Parse the JSON response
-    return data.candidates[0].content.parts[0].text
-}
-const enviarFormulario = async (event) =>{ // Function to handle form submission
-    event.preventDefault()// Prevent the default form submission behavior
-    const apiKey = getApiKey() // Get the API key from the config or environment variable
-    const tech = techSelect.value
-    const question = questionInput.value
-    
-    if(tech == '' || question == ''){
-        alert('por favor, preencha todos os campos.')
-        return
-    }
-    
-    if (!apiKey) {
-        alert('Erro: API Key não configurada. Verifique as configurações.')
-        return
-    }
-    
-    askButton.disabled = true // Disable the button to prevent multiple submissions
-    askButton.textContent = 'Perguntando...' // Change button text to indica'te submission
-    askButton.classList.add('loading')
+  // Calling API
+  const response = await fetch(baseURL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      contents,
+      tools,
+    }),
+  });
 
-    // Here you would typically make an API call to send the question and get a response
-    try{
-        const text = await perguntarAi(question,tech,apiKey)
-        aiResponse.querySelector('.response-content').innerHTML = markdownToHTML(text) // Display the AI's response
+  const data = await response.json(); // Parse the JSON response
+  return data.candidates[0].content.parts[0].text;
+};
+const enviarFormulario = async (event) => {
+  // Function to handle form submission
+  event.preventDefault(); // Prevent the default form submission behavior
+  const apiKey = getApiKey(); // Get the API key from the config or environment variable
+  const tech = techSelect.value;
+  const question = questionInput.value;
 
+  if (tech == "" || question == "") {
+    alert("por favor, preencha todos os campos.");
+    return;
+  }
 
-    } catch (error) {
-        console.log('Erro:' ,error)
-        alert('Erro ao processar sua pergunta. Tente novamente.')
-    } finally{
-        askButton.disabled = false // Re-enable the button after processing
-        askButton.textContent = 'Tire sua dúvida' // Reset button text
-        askButton.classList.remove('loading') // Remove loading class
-    }
-}
+  if (!apiKey) {
+    alert("Erro: API Key não configurada. Verifique as configurações.");
+    return;
+  }
 
-form.addEventListener('submit', enviarFormulario)
+  askButton.disabled = true; // Disable the button to prevent multiple submissions
+  askButton.textContent = "Perguntando..."; // Change button text to indica'te submission
+  askButton.classList.add("loading");
+
+  // Here you would typically make an API call to send the question and get a response
+  try {
+    const text = await perguntarAi(question, tech, apiKey);
+    aiResponse.querySelector(".response-content").innerHTML =
+      markdownToHTML(text); // Display the AI's response
+  } catch (error) {
+    console.log("Erro:", error);
+    alert("Erro ao processar sua pergunta. Tente novamente.");
+  } finally {
+    askButton.disabled = false; // Re-enable the button after processing
+    askButton.textContent = "Tire sua dúvida"; // Reset button text
+    askButton.classList.remove("loading"); // Remove loading class
+  }
+};
+
+form.addEventListener("submit", enviarFormulario);
