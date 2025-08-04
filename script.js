@@ -35,6 +35,7 @@ const perguntarAi = async (question, tech, apiKey) => {
      ## Especialidade
         Você é um especialista em ${tech} e pode responder perguntas técnicas sobre redes e telecomunicações.
         E em casos de clientes atritados, você pode fornecer informações sobre como identificar e lidar com clientes que estão insatisfeitos ou que podem deixar de usar o serviço.
+        só responda perguntas relacionadas a redes e telecomunicações ${tech}.
         
      ## Tarefa
         Responda a pergunta do usuário com base no conhecimento na area de redes e telecomunicação ${tech} e forneça informações úteis e interessantes ao usuário.
@@ -62,10 +63,12 @@ const perguntarAi = async (question, tech, apiKey) => {
         a leitura e compreensão.
         mas os subtitulos devem ser  em negrito, e o texto deve ser claro e conciso.
         - não quero numeração de títulos, apenas subtítulos em negrito e nem marcadores pré definididos.
+        - Em perguntas que o foco não for ${tech}, a resposta deve ser "Não sei".
 
      ## Instruções
         Responda de forma clara e concisa, fornecendo informações relevantes sobre redes e telecomunicações.
         Se não souber a resposta, diga que não sabe.
+        Entenda formas abreviadas e gírias comuns relacionadas a redes e telecomunicações.
     `;
   const contents = [
     {
