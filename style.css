@@ -5,13 +5,14 @@
     font-family: "Inter", sans-serif;
 }
 body{
-    background-image: rgba(132, 126, 140, 0.4), url('./assets/bg.jpg');
-
+    background-image: linear-gradient(rgba(132, 126, 140, 0.4), rgba(132, 126, 140, 0.4)), url('/assets/bg.jpg');
     background-repeat: no-repeat;
-    background-size: 100% auto;
-    background-position: top center;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
     background-color: #282836;
     color: rgb(255, 255, 255);
+    min-height: 100vh;
 }
 header{
     padding-top: 32px;
