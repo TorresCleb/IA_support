@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-
 # Assistente de Suporte - NLW
 
 Este é um assistente de suporte que utiliza a API do Google Gemini para responder perguntas sobre redes e telecomunicações.
@@ -99,5 +97,3 @@ Instrução Dinâmica: Antes de enviar a pergunta do usuário para a API do Gemi
 Ferramentas (Google Search): A inclusão de Google Search: {} nas tools (ferramentas) do fetch indica que o modelo Gemini tem a capacidade de utilizar a pesquisa do Google se precisar de informações adicionais para responder à pergunta. Isso amplia o conhecimento do nosso agente de IA, tornando-o ainda mais poderoso!
 
 Essa abordagem permite que a IA atue como um verdadeiro especialista no domínio, fornecendo respostas mais relevantes e precisas em comparação com uma consulta genérica.
-
-> > > > > > > 817bffc1e8b525428f861a36342a760b547dd17c
